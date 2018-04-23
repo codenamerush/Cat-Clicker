@@ -5,14 +5,31 @@
 	<title>Cat Clicker!</title>
 </head>
 <body>
-	Name : <label id=nameone text=""> </label>
+	<div class="listofcats">
+		<ul id="catsul">
+			<li id="0" onClick="reply_click(this.id)"><a> Cat 1 </a></li>
+			<li id="1" onClick="reply_click(this.id)"><a> Cat 2 </a></li>
+			<li id="2" onClick="reply_click(this.id)"><a> Cat 3 </a></li>
+			<li id="3" onClick="reply_click(this.id)"><a> Cat 4 </a></li>
+			<li id="4" onClick="reply_click(this.id)"><a> Cat 5 </a></li>
+		</ul>
+	</div>
+	<br>
+	<div class="displaycat">
+		Name : <label id="name" text=""> </label>
+		<img id="image" width="150px" height="150px">
+		count : <label id=counter text=0> </label>
+	</div>
+</body>
+
+<script src="app.js"></script>
+</html>
+
+<!-- 
+Name : <label id=nameone text=""> </label>
 	<img src="cat.jpg" alt="cat image" height= "150px" width="150px" id="cat-img">
 	count : <label id=counter text=0> </label>
 	<br><br>
 	Name : <label id=nametwo text=""> </label>
 	<img src="cat2.jpeg" alt="cat image" height= "150px" width="150px" id="cat-img-2">
-	count : <label id=counters text=0> </label>
-</body>
-
-<script src="app.js"></script>
-</html>
+	count : <label id=counters text=0> </label> -->
