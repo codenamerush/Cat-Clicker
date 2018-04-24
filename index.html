@@ -5,24 +5,14 @@
 	<title>Cat Clicker!</title>
 </head>
 <body>
-	<div class="listofcats">
-		<ul id="catsul">
-			<li id="0" onClick="reply_click(this.id)"><a> Cat 1 </a></li>
-			<li id="1" onClick="reply_click(this.id)"><a> Cat 2 </a></li>
-			<li id="2" onClick="reply_click(this.id)"><a> Cat 3 </a></li>
-			<li id="3" onClick="reply_click(this.id)"><a> Cat 4 </a></li>
-			<li id="4" onClick="reply_click(this.id)"><a> Cat 5 </a></li>
-		</ul>
+	<ul id="cat-list"></ul>
+	<div id="cat">
+		<h2 id="cat-name"></h2>
+		<div id="cat-count"></div>
+		<img id="cat-img" src="" alt="cute cat">
 	</div>
-	<br>
-	<div class="displaycat">
-		Name : <label id="name" text=""> </label>
-		<img id="image" width="150px" height="150px">
-		count : <label id=counter text=0> </label>
-	</div>
+	<script src="mvo.js"></script>
 </body>
-
-<script src="app.js"></script>
 </html>
 
 <!-- 
