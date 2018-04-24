@@ -7,7 +7,7 @@ var model = {
         {
             clickCount : 0,
             name : 'Tabby',
-            imgSrc : 'cat_picture1.jpg',
+            imgSrc : 'cat_picture1.jpeg',
             imgAttribution : 'https://www.flickr.com/photos/bigtallguy/434164568'
         },
         {
@@ -49,6 +49,8 @@ var octopus = {
         // tell our views to initialize
         catListView.init();
         catView.init();
+        adminView.init();
+        document.getElementById("admin-form").style.display="none";
     },
 
     getCurrentCat: function() {
@@ -67,6 +69,24 @@ var octopus = {
     // increments the counter for the currently-selected cat
     incrementCounter: function() {
         model.currentCat.clickCount++;
+        catView.render();
+    },
+
+    showForm: function() {
+        document.getElementById("admin-form").style.display="block";
+        adminView.render();
+    },
+
+    hideForm: function() {
+        document.getElementById("admin-form").style.display="none";
+    },
+
+    updateValues: function(namenew, imagenew, clicksnew) {
+        console.log(model.currentCat, namenew, imagenew, clicksnew);
+        model.currentCat.name = namenew;
+        model.currentCat.imgSrc = imagenew;
+        model.currentCat.clickCount = clicksnew;
+        catListView.render();
         catView.render();
     }
 };
@@ -135,6 +155,7 @@ var catListView = {
                 return function() {
                     octopus.setCurrentCat(catCopy);
                     catView.render();
+                    octopus.hideForm();
                 };
             })(cat));
 
@@ -144,5 +165,46 @@ var catListView = {
     }
 };
 
+var adminView = {
+
+    init: function() {
+        // store pointers to our DOM elements for easy access later
+        this.adminBtnElem = document.getElementById('admin-btn');
+
+        // on click, increment the current cat's counter
+        this.adminBtnElem.addEventListener('click', function(){
+            octopus.showForm();
+        });
+        this.cancelBtnElem = document.getElementById('cancel');
+        this.cancelBtnElem.addEventListener('click', function(e){
+            e.preventDefault();
+            octopus.hideForm();
+        });
+
+        this.saveBtnElem = document.getElementById('save');
+        this.saveBtnElem.addEventListener('click', function(e){
+            e.preventDefault();
+            console.log("working");
+            this.formName = document.getElementById('admin-name');
+            this.formImage = document.getElementById('admin-imgurl');
+            this.formClick = document.getElementById('admin-click');
+            octopus.updateValues(this.formName.value, this.formImage.value, this.formClick.value);
+        });
+    },
+
+    render: function() {
+        this.catNameElem = document.getElementById('cat-name').innerHTML;
+        this.catImageElem = document.getElementById('cat-img').src;
+        this.countElem = document.getElementById('cat-count').innerHTML;
+
+        this.formName = document.getElementById('admin-name');
+        this.formImage = document.getElementById('admin-imgurl');
+        this.formClick = document.getElementById('admin-click');
+
+        this.formName.value = this.catNameElem;
+        this.formImage.value = this.catImageElem;
+        this.formClick.value = this.countElem;
+    }
+};
 // make it go!
 octopus.init();
